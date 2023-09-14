@@ -1,0 +1,27 @@
+﻿version: "3.8"
+services:
+  qemu:
+    container_name: qemu
+    build: .
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ./iso:/iso
+      - ./img:/img
+    # ports:
+    #   - 5900:5900
+    environment:
+      - DISPLAY=$DISPLAY
+    devices:
+      - /dev/kvm
+    entrypoint: ["/usr/bin/qemu-system-x86_64",
+     "-enable-kvm", 
+     "-m", "4G", 
+     "-smp", "4", 
+     "-drive", "file=/img/win7.vhdx", 
+     "-machine", "usb=on", 
+     "-device", "usb-tablet", 
+      "-cpu", "host,vmware-cpuid-freq=false,enforce=false,host-phys-bits=true,hypervisor=off",
+      "-cdrom", "/iso/cn_windows_7_ultimate_with_sp1_x64_dvd_u_677408.iso",
+      # "-boot","d"
+      # "-vnc", ":0", 
+     ]
