@@ -28,8 +28,6 @@
 if you want to connect to the vm from vncviewer, you need to uncomment `"-vnc", ":0"` 
 and expose port 5900 by uncomment `5900:5900` and run `docker-compose up` again, use vncviewer to connect to the vm with `localhost:5900`
 
-# TODO
-- [ ] support samba
-
+`./shared` folder is shared between host and vm, you can put your files in it, and access it from `\\10.0.2.4` in vm
 # Reference
 https://github.com/zhaodice/qemu-anti-detection.git

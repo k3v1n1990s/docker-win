@@ -7,6 +7,8 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - ./iso:/iso
       - ./img:/img
+      - ./shared:/shared
+      
     # ports:
     #   - 5900:5900
     environment:
@@ -22,6 +24,8 @@ services:
      "-device", "usb-tablet", 
       "-cpu", "host,vmware-cpuid-freq=false,enforce=false,host-phys-bits=true,hypervisor=off",
       "-cdrom", "/iso/cn_windows_7_ultimate_with_sp1_x64_dvd_u_677408.iso",
+      "-net", "nic",
+      "-net", "user,smb=/shared", #access \\10.0.2.4 from guest
       # "-boot","d"
       # "-vnc", ":0", 
      ]
