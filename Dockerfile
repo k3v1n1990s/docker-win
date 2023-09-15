@@ -11,4 +11,7 @@ RUN cd qemu && git apply ../qemu-anti-detection/qemu7.0.0.patch && cd .. && \
     ../qemu/configure --target-list=x86_64-softmmu,x86_64-linux-user --prefix=/usr && \
     make -j$(nproc) && make install
 
+RUN apt install -y \
+samba samba-common
+
 ENTRYPOINT ["/bin/bash"]
